@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/platformPack_tilesheet.png" type="Texture" id=1]
+[ext_resource path="res://source/Enemy4.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.1403
+
+[sub_resource type="Animation" id=2]
+resource_name = "           rouund"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Enemy4/Enemy8:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 60.0, 180.0 ]
+}
+
+[node name="Enemy4" type="Area2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 0.822212
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 640.564, 64, 63.4363, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/           rouund" = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Enemy4_body_entered"]
